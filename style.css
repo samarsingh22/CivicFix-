@@ -1,0 +1,42 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #f4f4f4; }
+
+/* Nav */
+header { background: #222; padding: 10px 20px; }
+nav { display: flex; justify-content: space-between; align-items: center; }
+nav h1 { color: #00d084; }
+nav ul { display: flex; list-style: none; }
+nav ul li { margin-left: 15px; }
+nav ul li a { color: white; text-decoration: none; }
+
+/* Hero */
+.hero { text-align: center; padding: 50px 20px; background: white; }
+.hero h2 { font-size: 2rem; }
+.hero button { margin-top: 15px; padding: 10px 20px; background: #00d084; color: white; border: none; cursor: pointer; }
+
+/* Form */
+.form-section { padding: 20px; background: white; margin: 20px; border-radius: 10px; }
+form { display: flex; flex-direction: column; }
+form label { margin-top: 10px; }
+form input, form select, form textarea, form button { padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; }
+form button { background: #00d084; color: white; border: none; margin-top: 15px; }
+
+/* Small map inside form */
+#smallMap { height: 200px; margin-top: 10px; border-radius: 5px; }
+
+/* Main Map */
+.map-section { padding: 20px; background: white; margin: 20px; border-radius: 10px; }
+#mainMap { height: 400px; border-radius: 10px; }
+
+/* Track List */
+.track-section { padding: 20px; background: white; margin: 20px; border-radius: 10px; }
+.track-section ul { list-style: none; }
+.track-section li { padding: 10px; border-bottom: 1px solid #ddd; }
+
+/* Footer */
+footer { background: #222; color: white; text-align: center; padding: 10px; margin-top: 20px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav ul { flex-direction: column; }
+}

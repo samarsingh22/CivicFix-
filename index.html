@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicFix – Public Issue Reporting</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <!-- Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <h1>CivicFix</h1>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#report">Report Issue</a></li>
+                <li><a href="#map">Public Map</a></li>
+                <li><a href="#track">Track Issues</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <h2>Report. Track. Resolve.</h2>
+        <p>Your city, your voice – report civic issues instantly.</p>
+        <button onclick="scrollToSection('report')">Report an Issue</button>
+    </section>
+
+    <!-- Report Form -->
+    <section id="report" class="form-section">
+        <h2>Report a Civic Issue</h2>
+        <form id="issueForm">
+            <label>Name:</label>
+            <input type="text" name="name" required>
+
+            <label>Category:</label>
+            <select name="category" required>
+                <option value="">Select Category</option>
+                <option>Roads</option>
+                <option>Sanitation</option>
+                <option>Lighting</option>
+                <option>Drainage</option>
+                <option>Other</option>
+            </select>
+
+            <label>Description:</label>
+            <textarea name="description" required></textarea>
+
+            <label>Upload Photo:</label>
+            <input type="file" name="media">
+
+            <label>Location:</label>
+            <input type="text" id="locationField" placeholder="Select on map" readonly>
+
+            <div id="smallMap"></div>
+
+            <button type="submit">Submit Issue</button>
+        </form>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="map-section">
+        <h2>Reported Issues Map</h2>
+        <div id="mainMap"></div>
+    </section>
+
+    <!-- Track Issues -->
+    <section id="track" class="track-section">
+        <h2>Your Reported Issues</h2>
+        <ul id="issueList"></ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 CivicFix | For Better Cities</p>
+    </footer>
+</body>
+</html>
