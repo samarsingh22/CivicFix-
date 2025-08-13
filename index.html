@@ -3,80 +3,597 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CivicFix – Public Issue Reporting</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <!-- Google Maps API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+    <title>CivicConnect - Smart City Solutions</title>
+    <meta name="description" content="Discover local landmarks, report civic issues, and track their resolution in real-time. Connecting citizens with their city government for a better tomorrow.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
-    <header>
-        <nav>
-            <h1>CivicFix</h1>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#report">Report Issue</a></li>
-                <li><a href="#map">Public Map</a></li>
-                <li><a href="#track">Track Issues</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-city brand-icon"></i>
+                <span class="brand-text">CivicConnect</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="#landmarks" class="nav-link" data-page="landmarks">
+                    <i class="fas fa-map-marked-alt"></i> Landmarks
+                </a>
+                <a href="#report" class="nav-link" data-page="report">
+                    <i class="fas fa-exclamation-triangle"></i> Report Issue
+                </a>
+                <a href="#track" class="nav-link" data-page="track">
+                    <i class="fas fa-search"></i> Track Issues
+                </a>
+                <a href="#dashboard" class="nav-link" data-page="dashboard">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </a>
+            </div>
 
-    <!-- Hero -->
-    <section id="home" class="hero">
-        <h2>Report. Track. Resolve.</h2>
-        <p>Your city, your voice – report civic issues instantly.</p>
-        <button onclick="scrollToSection('report')">Report an Issue</button>
-    </section>
+            <div class="nav-controls">
+                <div class="role-switcher">
+                    <button class="role-btn active" data-role="citizen">
+                        <i class="fas fa-user"></i> Citizen
+                    </button>
+                    <button class="role-btn" data-role="authority">
+                        <i class="fas fa-shield-alt"></i> Authority
+                    </button>
+                </div>
+                <button class="nav-toggle" id="nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Report Form -->
-    <section id="report" class="form-section">
-        <h2>Report a Civic Issue</h2>
-        <form id="issueForm">
-            <label>Name:</label>
-            <input type="text" name="name" required>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <section id="page-home" class="page active">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-background">
+                    <div class="gradient-orb orb-1"></div>
+                    <div class="gradient-orb orb-2"></div>
+                    <div class="gradient-orb orb-3"></div>
+                </div>
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Smart City <span class="text-gradient">Solutions</span>
+                    </h1>
+                    <p class="hero-description">
+                        Discover local landmarks, report civic issues, and track their resolution in real-time. 
+                        Connecting citizens with their city government for a better tomorrow.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" data-navigate="landmarks">
+                            <i class="fas fa-map-marked-alt"></i>
+                            Explore Landmarks
+                        </button>
+                        <button class="btn btn-secondary" data-navigate="report">
+                            <i class="fas fa-megaphone"></i>
+                            Report Issue
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-            <label>Category:</label>
-            <select name="category" required>
-                <option value="">Select Category</option>
-                <option>Roads</option>
-                <option>Sanitation</option>
-                <option>Lighting</option>
-                <option>Drainage</option>
-                <option>Other</option>
-            </select>
+            <!-- Features Section -->
+            <div class="features-section">
+                <div class="container">
+                    <h2 class="section-title">Platform Features</h2>
+                    <div class="features-grid">
+                        <div class="feature-card feature-blue">
+                            <div class="feature-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <h3>Interactive Maps</h3>
+                            <p>Explore local landmarks with detailed information from Wikipedia and custom markers.</p>
+                        </div>
+                        <div class="feature-card feature-green">
+                            <div class="feature-icon">
+                                <i class="fas fa-megaphone"></i>
+                            </div>
+                            <h3>Report Issues</h3>
+                            <p>Easily report civic issues with photos, GPS location, and detailed descriptions.</p>
+                        </div>
+                        <div class="feature-card feature-purple">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Real-time Tracking</h3>
+                            <p>Track the status of your complaints and see citywide issue analytics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <label>Description:</label>
-            <textarea name="description" required></textarea>
+            <!-- Recent Issues -->
+            <div class="recent-issues-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Recently Resolved Issues</h2>
+                        <button class="btn btn-link" data-navigate="track">
+                            View All <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="issues-grid" id="recent-issues">
+                        <!-- Dynamic content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <label>Upload Photo:</label>
-            <input type="file" name="media">
+        <!-- Landmarks Page -->
+        <section id="page-landmarks" class="page">
+            <div class="page-header">
+                <div class="container">
+                    <h1 class="page-title">Local Landmarks Explorer</h1>
+                    <div class="search-controls">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="landmark-search" placeholder="Search landmarks...">
+                        </div>
+                        <select id="landmark-category" class="category-select">
+                            <option value="all">All Categories</option>
+                            <option value="historic">Historic Sites</option>
+                            <option value="parks">Parks & Recreation</option>
+                            <option value="museums">Museums</option>
+                            <option value="government">Government Buildings</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="landmarks-content">
+                <div class="map-container">
+                    <div id="landmarks-map" class="interactive-map">
+                        <div class="map-background"></div>
+                        <div class="map-controls">
+                            <button class="map-btn" id="zoom-in"><i class="fas fa-plus"></i></button>
+                            <button class="map-btn" id="zoom-out"><i class="fas fa-minus"></i></button>
+                            <button class="map-btn" id="center-map"><i class="fas fa-crosshairs"></i></button>
+                        </div>
+                        <div id="landmark-markers"></div>
+                    </div>
+                </div>
+                
+                <div class="landmarks-sidebar" id="landmarks-sidebar">
+                    <div class="sidebar-content">
+                        <h3>Landmark Details</h3>
+                        <div class="default-content">
+                            <i class="fas fa-map-pin"></i>
+                            <p>Click on a landmark marker to view details</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <label>Location:</label>
-            <input type="text" id="locationField" placeholder="Select on map" readonly>
+        <!-- Report Issue Page -->
+        <section id="page-report" class="page">
+            <div class="container">
+                <div class="report-header">
+                    <h1 class="page-title">Report a Civic Issue</h1>
+                    <p>Help us improve our city by reporting issues in your area</p>
+                </div>
 
-            <div id="smallMap"></div>
+                <div class="report-form-container">
+                    <form id="report-form" class="report-form">
+                        <!-- Category Selection -->
+                        <div class="form-group">
+                            <label class="form-label">Issue Category</label>
+                            <div class="category-grid">
+                                <div class="category-option" data-category="roads">
+                                    <i class="fas fa-road"></i>
+                                    <span>Roads</span>
+                                </div>
+                                <div class="category-option" data-category="lighting">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span>Lighting</span>
+                                </div>
+                                <div class="category-option" data-category="waste">
+                                    <i class="fas fa-trash"></i>
+                                    <span>Waste</span>
+                                </div>
+                                <div class="category-option" data-category="water">
+                                    <i class="fas fa-tint"></i>
+                                    <span>Water</span>
+                                </div>
+                            </div>
+                        </div>
 
-            <button type="submit">Submit Issue</button>
-        </form>
-    </section>
+                        <!-- Location -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-map-pin"></i>
+                                    <input type="text" id="issue-address" placeholder="Enter address or landmark" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Auto-detect Location</label>
+                                <button type="button" class="btn btn-outline" id="detect-location">
+                                    <i class="fas fa-crosshairs"></i>
+                                    Use My Current Location
+                                </button>
+                            </div>
+                        </div>
 
-    <!-- Map Section -->
-    <section id="map" class="map-section">
-        <h2>Reported Issues Map</h2>
-        <div id="mainMap"></div>
-    </section>
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label class="form-label">Description</label>
+                            <textarea id="issue-description" rows="4" placeholder="Describe the issue in detail..." required></textarea>
+                        </div>
 
-    <!-- Track Issues -->
-    <section id="track" class="track-section">
-        <h2>Your Reported Issues</h2>
-        <ul id="issueList"></ul>
-    </section>
+                        <!-- Priority -->
+                        <div class="form-group">
+                            <label class="form-label">Priority Level</label>
+                            <div class="priority-options">
+                                <label class="priority-option priority-low">
+                                    <input type="radio" name="priority" value="low">
+                                    <span>Low</span>
+                                </label>
+                                <label class="priority-option priority-medium">
+                                    <input type="radio" name="priority" value="medium" checked>
+                                    <span>Medium</span>
+                                </label>
+                                <label class="priority-option priority-high">
+                                    <input type="radio" name="priority" value="high">
+                                    <span>High</span>
+                                </label>
+                            </div>
+                        </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 CivicFix | For Better Cities</p>
-    </footer>
+                        <!-- File Upload -->
+                        <div class="form-group">
+                            <label class="form-label">Upload Photos/Videos</label>
+                            <div class="file-upload-area" id="file-upload">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag and drop files here or click to browse</p>
+                                <small>Supports JPG, PNG, MP4 up to 10MB</small>
+                                <input type="file" id="file-input" multiple accept="image/*,video/*" hidden>
+                            </div>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Name</label>
+                                <input type="text" id="citizen-name" placeholder="Your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" id="citizen-email" placeholder="your.email@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Phone Number (Optional)</label>
+                            <input type="tel" id="citizen-phone" placeholder="(555) 123-4567">
+                        </div>
+
+                        <!-- Notifications -->
+                        <div class="form-group">
+                            <label class="form-label">Notification Preferences</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" id="email-updates" checked>
+                                    <span class="checkmark"></span>
+                                    Email updates on issue progress
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" id="sms-updates">
+                                    <span class="checkmark"></span>
+                                    SMS updates for urgent issues
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Report
+                            </button>
+                            <button type="button" class="btn btn-outline">
+                                Save Draft
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Track Issues Page -->
+        <section id="page-track" class="page">
+            <div class="container">
+                <div class="track-header">
+                    <h1 class="page-title">Track Your Issues</h1>
+                    <p>Monitor the status of your reported issues and see citywide complaint data.</p>
+                </div>
+
+                <!-- Filter Bar -->
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="track-search" placeholder="Search by ID or description...">
+                    </div>
+                    <select id="track-status" class="filter-select">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="resolved">Resolved</option>
+                    </select>
+                    <select id="track-category" class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="roads">Roads</option>
+                        <option value="lighting">Lighting</option>
+                        <option value="waste">Waste</option>
+                        <option value="water">Water</option>
+                    </select>
+                </div>
+
+                <div class="track-content">
+                    <div class="my-issues">
+                        <h2>My Reported Issues</h2>
+                        <div id="my-issues-list" class="issues-list">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+
+                    <div class="public-issues">
+                        <h2>Public Issues Map</h2>
+                        <div class="issues-map-container">
+                            <div class="map-header">
+                                <h3>Active Issues in Your Area</h3>
+                                <div class="legend">
+                                    <div class="legend-item">
+                                        <div class="legend-dot high"></div>
+                                        <span>High Priority</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-dot medium"></div>
+                                        <span>Medium</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-dot low"></div>
+                                        <span>Low</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="issues-map" class="interactive-map">
+                                <div class="map-background"></div>
+                                <div id="issue-markers"></div>
+                            </div>
+                            <div class="map-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value" id="active-issues">24</div>
+                                    <div class="stat-label">Active Issues</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="resolved-month">156</div>
+                                    <div class="stat-label">Resolved This Month</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="avg-resolution">2.1 days</div>
+                                    <div class="stat-label">Avg Resolution Time</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Page -->
+        <section id="page-dashboard" class="page">
+            <div class="dashboard-header">
+                <div class="container">
+                    <div class="header-content">
+                        <div class="header-info">
+                            <h1 class="page-title">Authority Dashboard</h1>
+                            <p>Manage and resolve citizen complaints efficiently</p>
+                        </div>
+                        <div class="header-controls">
+                            <div class="notification-badge">
+                                <i class="fas fa-bell"></i>
+                                <span id="urgent-count">3</span> urgent issues
+                            </div>
+                            <div class="user-profile">
+                                <div class="avatar">AD</div>
+                                <span>Admin User</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card stat-red">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <div class="stat-value">24</div>
+                                <div class="stat-title">Pending Issues</div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +15% from last month
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-amber">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <div class="stat-value">18</div>
+                                <div class="stat-title">In Progress</div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            -8% from last month
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-green">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <div class="stat-value">156</div>
+                                <div class="stat-title">Resolved</div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +22% from last month
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-purple">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <div class="stat-value">2.1</div>
+                                <div class="stat-title">Avg. Days to Resolve</div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-down"></i>
+                            -12% improvement
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Content -->
+                <div class="dashboard-content">
+                    <div class="main-panel">
+                        <!-- Filter Bar -->
+                        <div class="dashboard-filter">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="dashboard-search" placeholder="Search complaints...">
+                            </div>
+                            <select id="dashboard-department" class="filter-select">
+                                <option value="all">All Departments</option>
+                                <option value="Public Works">Public Works</option>
+                                <option value="Sanitation">Sanitation</option>
+                                <option value="Electrical">Electrical</option>
+                                <option value="Water Department">Water Department</option>
+                            </select>
+                            <select id="dashboard-priority" class="filter-select">
+                                <option value="all">All Priorities</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+
+                        <!-- Complaints List -->
+                        <div class="complaints-panel">
+                            <div class="panel-header">
+                                <h2>Recent Complaints</h2>
+                                <div class="panel-actions">
+                                    <button class="btn btn-ghost">Export</button>
+                                    <button class="btn btn-ghost">Filter</button>
+                                </div>
+                            </div>
+                            <div id="complaints-list" class="complaints-list">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="side-panel">
+                        <!-- Quick Actions -->
+                        <div class="panel-card">
+                            <h3>Quick Actions</h3>
+                            <div class="action-buttons">
+                                <button class="action-btn">
+                                    <i class="fas fa-plus"></i>
+                                    Create New Task
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-users"></i>
+                                    Manage Teams
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-chart-bar"></i>
+                                    View Analytics
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-download"></i>
+                                    Export Reports
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Team Performance -->
+                        <div class="panel-card">
+                            <h3>Team Performance</h3>
+                            <div class="team-list" id="team-performance">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="panel-card">
+                            <h3>Recent Activity</h3>
+                            <div class="activity-list" id="recent-activity">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Loading CivicConnect...</p>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal" id="success-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-check-circle"></i> Success!</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Your report has been submitted successfully!</p>
+                <p>Report ID: <strong id="report-id">CR2024-001</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="modal-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
